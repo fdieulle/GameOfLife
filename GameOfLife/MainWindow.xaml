@@ -20,6 +20,7 @@
                     <TextBlock Text="FPS: " Margin="2" />
                     <TextBox Text="{Binding FramesPerSecond}" Margin="2" Width="30" />
                 </StackPanel>
+                <ComboBox ItemsSource="{Binding Shapes}" SelectedItem="{Binding SelectedShape}" Margin="5" />
                 <Button Content="Start" Command="{Binding StartSimulationCommand}" Margin="5"/>
                 <Button Content="Stop"  Command="{Binding StopSimulationCommand}" Margin="5" />
                 <Button Content="Clear"  Command="{Binding ClearCommand}" Margin="5" />

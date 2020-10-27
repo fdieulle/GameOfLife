@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows.Documents;
 using XShell.Core;
 
 namespace GameOfLife
@@ -20,6 +23,19 @@ namespace GameOfLife
 
                 _framePerSecond = value;
                 RaisePropertyChanged(nameof(FramesPerSecond));
+            }
+        }
+
+        public List<Shape> Shapes { get; } = Enum.GetValues(typeof(Shape)).OfType<Shape>().ToList();
+
+        private Shape _selectedShape = Shape.None;
+        public Shape SelectedShape
+        {
+            get => _selectedShape;
+            set
+            {
+                _selectedShape = value;
+                _grid.InitializeShape(value);
             }
         }
 

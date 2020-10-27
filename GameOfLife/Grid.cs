@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Input;
 
 namespace GameOfLife
@@ -41,89 +42,90 @@ namespace GameOfLife
                     //    cell.SetAlive(true);
                 }
             }
-
-            #region Inifinity patterns
-            //int index = 10;
-            //for (var i = 0; i < 8; i++)
-            //    _cells[50, index++].SetAlive(true);
-            //index++;
-            //for (var i = 0; i < 5; i++)
-            //    _cells[50, index++].SetAlive(true);
-            //index++; index++; index++;
-            //for (var i = 0; i < 3; i++)
-            //    _cells[50, index++].SetAlive(true);
-            //index++; index++; index++;
-            //index++; index++; index++;
-            //for (var i = 0; i < 7; i++)
-            //    _cells[50, index++].SetAlive(true);
-            //index++;
-            //for (var i = 0; i < 5; i++)
-            //    _cells[50, index++].SetAlive(true);
-            #endregion
-
-            #region Oscillators
-
-            #region Blinker
-            //_cells[50, 50].SetAlive(true);
-            //_cells[50, 51].SetAlive(true);
-            //_cells[50, 52].SetAlive(true);
-            #endregion
-
-            #region Toad
-            //_cells[50, 50].SetAlive(true);
-            //_cells[50, 51].SetAlive(true);
-            //_cells[50, 52].SetAlive(true);
-            //_cells[51, 51].SetAlive(true);
-            //_cells[51, 52].SetAlive(true);
-            //_cells[51, 53].SetAlive(true);
-            #endregion
-
-            #region Pulsar
-            //_cells[50, 50].SetAlive(true);
-            //_cells[50, 51].SetAlive(true);
-            //_cells[50, 52].SetAlive(true);
-
-            //_cells[51, 51].SetAlive(true);
-            //_cells[52, 51].SetAlive(true);
-            //_cells[53, 51].SetAlive(true);
-
-            //_cells[54, 50].SetAlive(true);
-            //_cells[54, 51].SetAlive(true);
-            //_cells[54, 52].SetAlive(true);
-
-            //_cells[51, 48].SetAlive(true);
-            //_cells[52, 48].SetAlive(true);
-            //_cells[53, 48].SetAlive(true);
-            #endregion
-
-            #endregion
-
-            #region Spaceships
-
-            #region Glider
-            //_cells[50, 48].SetAlive(true);
-            //_cells[50, 49].SetAlive(true);
-            //_cells[51, 49].SetAlive(true);
-            //_cells[51, 50].SetAlive(true);
-            //_cells[52, 48].SetAlive(true);
-            #endregion
-
-            #endregion
-            //_cells[50, 50].SetAlive(true);
-            //_cells[50, 50].SetAlive(true);
-            //_cells[50, 50].SetAlive(true);
-            //_cells[50, 51].SetAlive(true);
-            //_cells[50, 52].SetAlive(true);
-            ////_cells[51, 52].SetAlive(true);
-            //_cells[50, 53].SetAlive(true);
-            //_cells[50, 54].SetAlive(true);
         }
 
-        internal void SetAllCellsAsDead()
+        public void SetAllCellsAsDead()
         {
             for (var i = 0; i < size; i++)
                 for (var j = 0; j < size; j++)
                     _cells[i, j].SetAlive(false);
+        }
+
+        public void InitializeShape(Shape shape)
+        {
+            SetAllCellsAsDead();
+
+            switch(shape)
+            {
+                case Shape.Block:
+                    _cells[50, 50].SetAlive(true);
+                    _cells[50, 51].SetAlive(true);
+                    _cells[51, 50].SetAlive(true);
+                    _cells[51, 51].SetAlive(true);
+                    break;
+                case Shape.Blinker:
+                    _cells[50, 50].SetAlive(true);
+                    _cells[50, 51].SetAlive(true);
+                    _cells[50, 52].SetAlive(true);
+                    break;
+                case Shape.Toad:
+                    _cells[50, 50].SetAlive(true);
+                    _cells[50, 51].SetAlive(true);
+                    _cells[50, 52].SetAlive(true);
+                    _cells[51, 51].SetAlive(true);
+                    _cells[51, 52].SetAlive(true);
+                    _cells[51, 53].SetAlive(true);
+                    break;
+                case Shape.Pulsar:
+                    _cells[50, 50].SetAlive(true);
+                    _cells[50, 51].SetAlive(true);
+                    _cells[50, 52].SetAlive(true);
+
+                    _cells[51, 51].SetAlive(true);
+                    _cells[52, 51].SetAlive(true);
+                    _cells[53, 51].SetAlive(true);
+
+                    _cells[54, 50].SetAlive(true);
+                    _cells[54, 51].SetAlive(true);
+                    _cells[54, 52].SetAlive(true);
+
+                    _cells[51, 48].SetAlive(true);
+                    _cells[52, 48].SetAlive(true);
+                    _cells[53, 48].SetAlive(true);
+                    break;
+                case Shape.Glider:
+                    _cells[50, 48].SetAlive(true);
+                    _cells[50, 49].SetAlive(true);
+                    _cells[51, 49].SetAlive(true);
+                    _cells[51, 50].SetAlive(true);
+                    _cells[52, 48].SetAlive(true);
+                    break;
+                case Shape.RPentomino:
+                    _cells[50, 49].SetAlive(true);
+                    _cells[50, 50].SetAlive(true);
+                    _cells[51, 50].SetAlive(true);
+                    _cells[49, 50].SetAlive(true);
+                    _cells[49, 51].SetAlive(true);
+                    break;
+                case Shape.Custom1:
+                    int index = 10;
+                    for (var i = 0; i < 8; i++)
+                        _cells[50, index++].SetAlive(true);
+                    index++;
+                    for (var i = 0; i < 5; i++)
+                        _cells[50, index++].SetAlive(true);
+                    index++; index++; index++;
+                    for (var i = 0; i < 3; i++)
+                        _cells[50, index++].SetAlive(true);
+                    index++; index++; index++;
+                    index++; index++; index++;
+                    for (var i = 0; i < 7; i++)
+                        _cells[50, index++].SetAlive(true);
+                    index++;
+                    for (var i = 0; i < 5; i++)
+                        _cells[50, index++].SetAlive(true);
+                    break;
+            }
         }
 
         private void AddNeightbhour(Cell cell, int row, int column)
@@ -193,6 +195,36 @@ namespace GameOfLife
         }
 
         #endregion
+    }
+
+    public enum Shape
+    {
+        None,
+        // ---- Still lifes
+        Block,
+        //BeeHive,
+        //Loaf,
+        //Boat,
+        //Tub,
+        // ---- Oscillators
+        Blinker,
+        Toad,
+        //Beacon,
+        Pulsar,
+        //PentaDecathlon,
+        // ---- SpaceShips
+        Glider,
+        //LightWeightSpaceShip,
+        //MiddleWeightSpaceShip,
+        //HeavyWeightSpaceShip,
+        // ---- Expandable
+        RPentomino,
+        //DieHard,
+        //Acorn,
+        //GosperGliderGun,
+        //SimkinGliderGun,
+        // ---- Customs
+        Custom1
     }
 
 }
